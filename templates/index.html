@@ -1,0 +1,136 @@
+<!doctype html>
+<html ng-app="art_link">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Art Link</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="../static/css/main.css">
+
+</head>
+
+<body>
+    <div class="container-fluid col-md-12 align_center">
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Home</a>
+                    <a class="navbar-brand" href="#">About</a>
+                    <a class="navbar-brand" href="#">Sign In</a>
+                </div>
+          </div>
+        </nav>
+    </div>
+    <div class="container-fluid" ng-controller="OptionsController">
+        <div class="row header_name">
+            <h1>Art Link</h1>
+        </div>
+        <div class="row header_options">
+            <div class="col-md-6 col-xs-12 header_options_left">
+                <button type="button" class="btn btn-info" ng-click="selectBrowseArt()">Browse</button>
+            </div>
+            <div class="col-md-6 col-xs-12 header_options_right">
+                <button type="button" class="btn btn-success" ng-click="selectAddArt()">Add New</button>
+            </div>
+        </div>
+        <div class="row browse_main" ng-show="isBrowseArtSelected()">
+        <div class="col-md-3 col-xs-0 browse_sidebar">
+            <div class="row filter_row">
+            <em>All Posts</em>
+            </div>
+            <div class="row filter_row">
+                Post-modern
+            </div>
+            <div class="row filter_row">
+                Abstract Expressionism
+            </div>
+            <div class="row filter_row">
+                Impressionism
+            </div>
+            <div class="row filter_row">
+                Moderm
+            </div>
+            <div class="row filter_row">
+                Romanticism
+            </div>
+        </div>
+        <div class="col-md-9 col-xs-12">
+            <div class="row  browse_filter" ng-controller="DropdownCtrl">
+                <!-- Single button -->
+                <div class="btn-group" dropdown is-open="status.genreisopen">
+                  <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+                    Genre <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                  </ul>
+                </div>
+
+                <div class="btn-group" dropdown is-open="status.artistisopen">
+                  <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+                    Artist <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                  </ul>
+                </div>
+
+                <!-- <div class="btn-group" dropdown is-open="status.isopen">
+                  <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+                    Date Added <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                  </ul>
+                </div> -->
+
+
+            </div>
+        </div>
+
+        </div>
+
+        <div class="row" ng-show="isAddArtSelected()">
+            <div class="col-md-12">Add Arts Here!</div>
+        </div>
+
+        </div>
+    </div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src="../static/js/art_link_app.js"></script>
+<script src="../static/js/ui-bootstrap-custom-0.13.0.js"></script>
+</body>
+</html>
+
+<!-- <div class="btn-group">
+                    <button type="button" class="btn btn-success">Filter</button>
+                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Filter1</a></li>
+                        <li><a href="#">Filter2</a></li>
+                        <li><a href="#">Filter3</a></li>
+                        <li><a href="#">Filter4</a></li>
+                    </ul>
+                </div> -->
