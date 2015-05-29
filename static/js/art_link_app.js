@@ -5,6 +5,7 @@
         console.log("OptionsController on");
         $scope.add_art = 0;
         $scope.browse_art = 0;
+        $scope.filter_tag = {};
 
         $scope.selectBrowseArt = function() {
             $scope.browse_art = 1;
@@ -27,6 +28,23 @@
         $scope.isAddArtSelected = function() {
             return $scope.add_art === 1
         };
+
+    });
+
+    app.controller('FilterController', function($scope) {
+        $scope.show_search_text_box = 0;
+
+        $scope.toggleSearchTextBox = function() {
+            if ($scope.show_search_text_box===1) {
+                $scope.show_search_text_box = 0;
+            }else {
+                $scope.show_search_text_box = 1;
+            };
+        }
+
+        $scope.isSearchTextBoxToggled = function() {
+            return $scope.show_search_text_box === 1
+        }
 
     });
 

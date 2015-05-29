@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width">
     <title>Art Link</title>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+   <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"> -->
 
     <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
 
@@ -41,55 +41,60 @@
             </div>
         </div>
         <div class="row browse_main" ng-show="isBrowseArtSelected()">
-        <div class="col-md-3 col-xs-0 browse_sidebar">
-            <div class="row filter_row">
+        <div class="col-md-2 col-xs-0 browse_sidebar">
+            <div class="sidebar_row">
             <em>All Posts</em>
             </div>
-            <div class="row filter_row">
-                Post-modern
+            {% for tags in most_popular_tags_list %}
+            <div class="sidebar_row">
+                {{tags[0]}}
             </div>
-            <div class="row filter_row">
-                Abstract Expressionism
-            </div>
-            <div class="row filter_row">
-                Impressionism
-            </div>
-            <div class="row filter_row">
-                Moderm
-            </div>
-            <div class="row filter_row">
-                Romanticism
-            </div>
+            {% endfor %}
         </div>
         <div class="col-md-9 col-xs-12">
-            <div class="row  browse_filter" ng-controller="DropdownCtrl">
+            <!-- Filter Goes Here -->
+            <div class="row browse_filter" ng-controller="FilterController">
+                <div class="browse_search" ng-click="toggleSearchTextBox()">
+                {% raw %}
+                    <div class="filter_tag_row">
+                        <div class="filter_tag" ng-repeat="tag in filter_tags"><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        {{tag}}
+                        </div>
+                    {% endraw %}
+                    </div>
+                    <div class="filter_tag_row" ng-show="isSearchTextBoxToggled()">
+                        <p>Search:<input class='form-control' type='text' size='80' name='search' placeholder='by keywords'>
+                        <input type='submit' value='Add Filter Tag' class="btn btn-primary pull-left"></p>
+                    </div>
+                </div>
                 <!-- Single button -->
-                <div class="btn-group" dropdown is-open="status.genreisopen">
-                  <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-                    Genre <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                  </ul>
-                </div>
+                <div class="filter_tag_row"  ng-controller="DropdownCtrl">
+                    <div class="btn-group" dropdown is-open="status.genreisopen">
+                      <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+                        Genre <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                      </ul>
+                    </div>
 
-                <div class="btn-group" dropdown is-open="status.artistisopen">
-                  <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-                    Artist <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                  </ul>
+                    <div class="btn-group" dropdown is-open="status.artistisopen">
+                      <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+                        Artist <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                      </ul>
+                    </div>
                 </div>
-
                 <!-- <div class="btn-group" dropdown is-open="status.isopen">
                   <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle ng-disabled="disabled">
                     Date Added <span class="caret"></span>
@@ -105,12 +110,43 @@
 
 
             </div>
+            {% for post in art_display_content %}
+            <div class="row browse_content">
+                <h3>{{post.art_title}}</h3>
+                <br><a href="{{post.art_link}}">{{post.art_link}}</a>
+                <p>Artist: {{post.artist_name}}
+                <br>Rating: {{post.rating}}
+                <br>Post Created by: {{post.created_by}}
+                <br>Last Updated by: {{post.last_updated_by}}
+                <br>
+                <br>{% for tag in post.tag_list %}
+                    <em>{{tag}},</em>
+                    {% endfor %}
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-1 col-xs-0"></div>
         </div>
 
-        </div>
 
-        <div class="row" ng-show="isAddArtSelected()">
-            <div class="col-md-12">Add Arts Here!</div>
+
+        <div class="row add_main" ng-show="isAddArtSelected()">
+            <div class="col-md-2 col-xs-0"></div>
+            <div class="col-md-8 col-xs-12 add_form">
+                <h4>Enter new art:</h4>
+                <form action="#" method='post'>
+                <p>Link<input class='form-control' type='text' size='100' name='link' placeholder='Enter Link'></p>
+                <p>Art Title<input class='form-control' type='text' size='100' name='art_title' placeholder='Mona Lisa'></p>
+                <p>Artist Name<input class='form-control' type='text' size='100' name='artist_name' placeholder='Leonardo Da Vinci'></p>
+                <p>Tags<input class='form-control' type='text' size='100' name='tag_line' placeholder='classic, history, da vinci code'></p>
+
+                <p><input type='submit' value='Create' class="btn btn-primary pull-left"><p>
+                <p><a href="#" class="btn btn-link">Cancel</a>
+                </p></p>
+                </p></form>
+            </div>
+            <div class="col-md-2 col-xs-0"></div>
         </div>
 
         </div>
