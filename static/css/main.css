@@ -69,7 +69,7 @@
 
 .browse_search {
     background-color: #fff;
-    height: 50px;
+    min-height: 50px;
     border-width: 1px;
 }
 

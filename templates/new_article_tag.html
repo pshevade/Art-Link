@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Article Link</title>
+    </head>
+
+<body>
+    <h1>New Article Tag</h1>
+    <p>Enter new article tag:
+        <ul>
+        <form action="{{url_for('addNewArticleTag')}}" method='POST'>
+            <p>Name: <input type="text" size="15" name="name" placeholder="article tag">
+            </p>
+            <p><input type='submit' value='add'>&nbsp<a href="{{url_for('articlesLinkPage')}}">or cancel</a></p>
+        </ul>
+    </p>
+</body>
+</html>

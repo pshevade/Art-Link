@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Article Link</title>
+    </head>
+
+<body>
+    <h1>New Comment for article: <a href="{{article.link}}">{{article.title}}</a></h1>
+    <p>Enter new article type:
+        <ul>
+        <form action="{{url_for('addNewComment', article_id=article.id)}}" method='POST'>
+            <p>Comment: <input type="text" size="30" name="comment_text" placeholder="What a great article...">
+            </p>
+            <p><input type='submit' value='add'>&nbsp<a href="{{url_for('articlesLinkPage')}}">or cancel</a></p>
+        </ul>
+    </p>
+</body>
+</html>

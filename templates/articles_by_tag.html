@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Article Link</title>
+    </head>
+
+<body>
+    <h1>Articles of type "{{tag.tag_name}}"</h1>
+    <p>Articles:
+        <ul>
+        {% for post in article_display_content %}
+            <li><a href="{{url_for('articleInformation', type_id = post.article_type.id, article_id=post.article.id)}}">{{post.article.title}}</a>
+            <br>{% for tag in post.tags %} {{tag.tag_name}} {% endfor %}</li>
+        {% endfor %}
+        </ul>
+        <br><a href="{{url_for('deleteArticleTag', tag_id=tag.id)}}">Delete Tag</a>
+    </p>
+</body>
+</html>

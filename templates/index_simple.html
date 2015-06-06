@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Article Link</title>
+    </head>
+
+
+<body>
+    <h1>Article Link!</h1>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    <p>Types of articles:
+        <ul>
+        {% for type in article_types_list %}
+            <li><a href="{{url_for('articlesByType', type_id=type.id)}}">{{type.name}}</a></li>
+        {% endfor %}
+        </ul>
+        <p><a href="{{url_for('addNewArticleType')}}">New Article Type</a></p>
+    </p>
+    <p>Popular tags:
+        <ul>
+        {% for tag in most_popular_tags_list %}
+            <li><a href="{{url_for('articlesByTag', tag_id=tag.id)}}">{{tag.tag_name}}</a></li>
+        {% endfor %}
+        </ul>
+        <p><a href="{{url_for('addNewArticleTag')}}">New Article Tag</a></p>
+    </p>
+    <p>All articles:
+        <ul>
+        {% for post in article_display_content %}
+            <li><a href="{{url_for('articleInformation', type_id=post.article.article_type_id, article_id=post.article.id)}}">{{post.article.title}}</a>
+            <br>{% for tag in post.tags %}
+                {{tag.tag_name}},
+                {% endfor %}</li>
+        {% endfor %}
+        </ul>
+        <p><a href="{{url_for('addNewArticle')}}">New Article</a></p>
+    </p>
+</body>
+</html>

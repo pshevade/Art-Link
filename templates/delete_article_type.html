@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Article Link</title>
+    </head>
+
+<body>
+    <h1>Edit Article Type</h1>
+    <p>Delete Article Type: {{article_type.name}}
+        <ul>
+        <form action="{{url_for('deleteArticleType', article_type_id = article_type.id)}}" method='POST'>
+           <p><input type='submit' value='delete'>&nbsp<a href="{{url_for('articlesLinkPage')}}">or cancel</a></p>
+        </ul>
+    </p>
+</body>
+</html>

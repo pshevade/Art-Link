@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Article Link</title>
+    </head>
+
+<body>
+    <h1>Edit Article</h1>
+    <p>Edit Article Information:
+        <ul>
+        <form action="{{url_for('editArticle', article_id = article.id)}}" method='POST'>
+            <p>Title: <input type="text" size="15" name="title" placeholder="{{article.title}}">
+            </p>
+            <p>Type: <input type="text" size="15" name="type" placeholder="{{article.article_type.name}}">
+            </p>
+            <p>About: <input type="text" size="15" name="about" placeholder="{{article.about}}">
+            </p>
+            <p>Tags: <input type="text" size="15" name="tags" placeholder="tag_names, comma_separated, values">
+            </p>
+            <p><input type='submit' value='add'>&nbsp<a href="{{url_for('articlesLinkPage')}}">or cancel</a></p>
+        </ul>
+    </p>
+</body>
+</html>
