@@ -7,7 +7,7 @@
         $scope.browse_article = 0;
         $scope.filter_tag = {
             'tag1': {
-                'name':'my_tag',
+                'name':'gand',
 
             },
             'tag2': {

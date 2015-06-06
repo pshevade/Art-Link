@@ -17,6 +17,7 @@ def articlesLinkPage():
     article_types_list = session.query(Article_Type).all()
     # Get the 10 most popular tags
     most_popular_tags_list = getMostPopularTags()
+    print(most_popular_tags_list)
     # # generate art_content, art name, art link, art artist name, tags created_by, last_updated_by
     kwargs = {"article_id":None, "article_type_id":None, "tag_id":None}
     article_display_content = getArticleDisplayContent(**kwargs)
