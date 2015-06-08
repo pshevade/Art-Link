@@ -50,6 +50,10 @@ type_tutorial = Article_Type(name='tutorial')
 session.add(type_tutorial)
 session.commit()
 
+type_discussion = Article_Type(name='discussion')
+session.add(type_discussion)
+session.commit()
+
 
 type_portrait = Article_Type(name='portrait')
 session.add(type_portrait)
@@ -58,14 +62,6 @@ session.commit()
 full_link="http://www.copterlabs.com/blog/json-what-it-is-how-it-works-how-to-use-it/"
 full_link_url_obj = urlparse(full_link)
 art1 = Article( link=full_link,
-            # url_scheme = full_link_url_obj.scheme,
-            # url_netloc = full_link_url_obj.netloc,
-            # url_path = full_link_url_obj.path,
-            # url_params = full_link_url_obj.params,
-            # url_query = full_link_url_obj.query,
-            # url_fragment = full_link_url_obj.fragment,
-            # url_hostname = full_link_url_obj.hostname,
-            # url_port = full_link_url_obj.port,
             title = "JSON: What it is, How it works, and how to use it",
             upload_file = "", # file path to where the uploaded file is stored
             article_type=type_opinion,
@@ -75,9 +71,6 @@ art1 = Article( link=full_link,
 
 art1 = createArticleIfNotExists(art1)
 
-# session.add(art1)
-# session.commit()
-
 comment1 = Comments(text="What a great article", user=primary_user, article=art1)
 session.add(comment1)
 session.commit()
@@ -85,26 +78,102 @@ session.commit()
 full_link="http://bost.ocks.org/mike/treemap/"
 full_link_url_obj = urlparse(full_link)
 art2 = Article(link=full_link,
-            # url_scheme = full_link_url_obj.scheme,
-            # url_netloc = full_link_url_obj.netloc,
-            # url_path = full_link_url_obj.path,
-            # url_params = full_link_url_obj.params,
-            # url_query = full_link_url_obj.query,
-            # url_fragment = full_link_url_obj.fragment,
-            # url_hostname = full_link_url_obj.hostname,
-            # url_port = full_link_url_obj.port,
             title = "Zoomable Treemap",
             upload_file = "", # file path to where the uploaded file is stored
             article_type=type_tutorial,
+            ratings=0,
             about="Cool data representation using javascript and D3js",
             created_by = secondary_user,
             last_updated_by = secondary_user)
 
-# session.add(art2)
-# session.commit()
-
 art2 = createArticleIfNotExists(art2)
 
+
+full_link="https://www.reddit.com/r/flask/comments/34qqhv/how_to_make_subqueries_on_a_query/"
+full_link_url_obj = urlparse(full_link)
+art3 = Article(link=full_link,
+            title = "Flask - how to make subqueries",
+            upload_file = "", # file path to where the uploaded file is stored
+            article_type=type_discussion,
+            ratings=0,
+            about="Reddit discussion on how to create subqueries in flask",
+            created_by = secondary_user,
+            last_updated_by = secondary_user)
+
+art3 = createArticleIfNotExists(art3)
+
+
+full_link="http://nbviewer.ipython.org/github/Prooffreader/Misc_ipynb/blob/master/top_10_python_idioms.ipynb"
+full_link_url_obj = urlparse(full_link)
+createArticleIfNotExists( Article(  link=full_link,
+                                    title = "Top 10 python idioms I wish I'd learned",
+                                    upload_file = "", # file path to where the uploaded file is stored
+                                    article_type=type_opinion,
+                                    ratings=0,
+                                    about="10 idioms you should learn in Python",
+                                    created_by = secondary_user,
+                                    last_updated_by = secondary_user)
+                        )
+
+full_link="http://www.datchley.name/tag/fundamentals/"
+full_link_url_obj = urlparse(full_link)
+createArticleIfNotExists( Article(  link=full_link,
+                                    title = "Learn Fundamentals of Javascript",
+                                    upload_file = "", # file path to where the uploaded file is stored
+                                    article_type=type_tutorial,
+                                    ratings=0,
+                                    about="JS fundamentals by Dave Atchley",
+                                    created_by = secondary_user,
+                                    last_updated_by = secondary_user)
+                        )
+
+full_link="http://www.google.com/design/videos/making-material-design/"
+full_link_url_obj = urlparse(full_link)
+createArticleIfNotExists( Article(  link=full_link,
+                                    title = "Behind the scenes of Google's visual framework",
+                                    upload_file = "", # file path to where the uploaded file is stored
+                                    article_type=type_portrait,
+                                    ratings=0,
+                                    about="Learn what goes on behind google's framework",
+                                    created_by = primary_user,
+                                    last_updated_by = secondary_user)
+                        )
+
+full_link="https://www.reddit.com/r/web_design/comments/377ibp/how_does_paypal_have_a_great_quality_video_play/"
+full_link_url_obj = urlparse(full_link)
+createArticleIfNotExists( Article(  link=full_link,
+                                    title = "PayPal high quality front page video",
+                                    upload_file = "", # file path to where the uploaded file is stored
+                                    article_type=type_discussion,
+                                    ratings=0,
+                                    about="How does paypal play a great quality video on their front page almost instantly? ",
+                                    created_by = primary_user,
+                                    last_updated_by = primary_user)
+                        )
+
+full_link="https://www.google.com/about/careers/students/guide-to-technical-development.html"
+full_link_url_obj = urlparse(full_link)
+createArticleIfNotExists( Article(  link=full_link,
+                                    title = "Google's guide to becoming a good SD",
+                                    upload_file = "", # file path to where the uploaded file is stored
+                                    article_type=type_opinion,
+                                    ratings=0,
+                                    about="Learn from the best",
+                                    created_by = secondary_user,
+                                    last_updated_by = primary_user)
+                        )
+
+full_link="https://www.youtube.com/watch?v=G-uKNd5TSBw&feature=youtu.be"
+full_link_url_obj = urlparse(full_link)
+createArticleIfNotExists( Article(  link=full_link,
+                                    title = "Guido's PyCon2015 talk",
+                                    upload_file = "", # file path to where the uploaded file is stored
+                                    article_type=type_news,
+                                    ratings=0,
+                                    about="Guido's talk - learn whats new",
+                                    created_by = primary_user,
+                                    last_updated_by = secondary_user)
+                        )
 
 tag1 = Tags(tag_name ="javascript")
 session.add(tag1)

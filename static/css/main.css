@@ -34,7 +34,7 @@
     align-items: center;
     height: 50px;
     text-align: center;
-    box-shadow: 0px 1px 1px 1px #C7C7C7;
+/*    box-shadow: 0px 1px 1px 1px #C7C7C7;*/
 }
 
 
@@ -76,7 +76,7 @@
 .sidebar_row {
     /*height: 35px;*/
     width: 100%;
-    padding: 2px 2px 2px 2px;
+    padding: 2px 2px 2px 10px;
     border-style: solid;
     border-color: #C7C7C7;
     border-width: 0px 1px 1px 1px;
@@ -121,10 +121,10 @@
     align-items: center;
     text-align: left;
 
-    margin: 10px 10px 10px 5px;
+    margin: 1px 10px 1px 5px;
     padding: 10px 10px 10px 10px;
     background-color: #fff;
-    box-shadow: 2px 1px 1px 1px #C7C7C7;
+    box-shadow: 2px 2px 2px 2px #C7C7C7;
 }
 
 .add_main {

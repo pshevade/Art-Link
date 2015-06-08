@@ -1,26 +1,72 @@
 <!doctype html>
 <html>
-    <head>
-        <title>Article Link</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Article Link</title>
+    <!-- Latest compiled and minified CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Optional theme -->
+   <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"> -->
+
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="../static/css/main.css">
+
+</head>
 
 <body>
-    <h1>New Article</h1>
-    <p>Enter new article type:
-        <ul>
-        <form action="{{url_for('addNewArticle')}}" method='POST'>
-            <p>Link: <input type="text" size="15" name="link" placeholder="http://www.google.com">
-            </p>
-            <p>Title: <input type="text" size="15" name="title" placeholder="Title">
-            </p>
-            <p>Type: <input type="text" size="15" name="type" placeholder="Article Type">
-            </p>
-            <p>About: <input type="text" size="15" name="about" placeholder="Brief description">
-            </p>
-            <p>Tags: <input type="text" size="15" name="tags" placeholder="tag_names, comma_separated, values">
-            </p>
-            <p><input type='submit' value='add'>&nbsp<a href="{{url_for('articlesLinkPage')}}">or cancel</a></p>
-        </ul>
-    </p>
+    <div class="container-fluid col-md-12 align_center">
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Home</a>
+                    <a class="navbar-brand" href="#">About</a>
+                    <a class="navbar-brand" href="#">Sign In</a>
+                </div>
+          </div>
+        </nav>
+    </div>
+    <div class="container-fluid">
+        <div class="row header_name">
+            <h1>Article Link</h1>
+        </div>
+
+        <div class="row add_main">
+            <div class="col-md-2 col-xs-0"></div>
+            <div class="col-md-8 col-xs-12 add_form">
+                <h4>Create a new article:</h4>
+                <form action="{{url_for('addNewArticle')}}" method='POST'>
+                <p>Link<input class='form-control' type='text' size='100' name='link' placeholder='Enter Link'></p>
+                <p>Title<input class='form-control' type='text' size='100' name='title' placeholder='Title'></p>
+                <p>Type<input class='form-control' type='text' size='100' name='type' placeholder='Type of Article'></p>
+                <p>About<input class='form-control' type='text' size='100' name='about' placeholder='Brief description of the article'></p>
+                <p>Tags<input class='form-control' type='text' size='100' name='tags' placeholder='classic, history, da vinci code'></p>
+
+                <p><input type='submit' value='Create' class="btn btn-primary pull-left"></p>
+                </form>
+                <p><a href="{{url_for('articlesLinkPage')}}"><button class="btn btn-default">Cancel</button></a>
+                </p>
+            </div>
+            <div class="col-md-2 col-xs-0"></div>
+        </div>
+
+        </div>
+    </div>
 </body>
 </html>
+
+<!-- <div class="btn-group">
+                    <button type="button" class="btn btn-success">Filter</button>
+                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Filter1</a></li>
+                        <li><a href="#">Filter2</a></li>
+                        <li><a href="#">Filter3</a></li>
+                        <li><a href="#">Filter4</a></li>
+                    </ul>
+                </div> -->

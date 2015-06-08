@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Article Link</title>
+    <!-- Latest compiled and minified CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Optional theme -->
+   <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"> -->
+
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="../static/css/main.css">
+
+</head>
+
+<body>
+    <div class="container-fluid col-md-12 align_center">
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Home</a>
+                    <a class="navbar-brand" href="#">About</a>
+                    <a class="navbar-brand" href="#">Sign In</a>
+                </div>
+          </div>
+        </nav>
+    </div>
+    <div class="container-fluid">
+        <div class="row header_name">
+            <h1>Article Link</h1>
+        </div>
+        <div class="row header_options">
+            <div class="col-md-6 col-xs-12 header_options_left">
+                <a href="{{url_for('browseArticles')}}"<button type="button" class="btn btn-info">Browse</button></a>
+            </div>
+            <div class="col-md-6 col-xs-12 header_options_right">
+                <a href="{{url_for('addNewArticle')}}"><button type="button" class="btn btn-success">Add New</button></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

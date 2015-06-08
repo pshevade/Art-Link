@@ -67,7 +67,7 @@ def createArticleIfNotExists(new_article):
     if article_exists:
         print("The article exists")
         print("The article exists: {0}, {1}".format(article_exists.title, article_exists.id))
-        flash('This article exists!')
+        #flash('This article exists!')
         return article_exists
     else:
         print("The article doesn't exist")

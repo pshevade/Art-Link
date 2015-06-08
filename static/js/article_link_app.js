@@ -4,7 +4,7 @@
     app.controller("OptionsController", function($scope){
         console.log("OptionsController on");
         $scope.add_article = 0;
-        $scope.browse_article = 0;
+        $scope.browse_article = 1;
         $scope.filter_tag = {
             'tag1': {
                 'name':'gand',
@@ -30,6 +30,14 @@
             console.log("selectAddarticle - browse_article is:", $scope.browse_article)
             console.log("selectAddarticle - add_article is:", $scope.add_article)
         };
+
+        $scope.closeAddArticle = function() {
+            $scope.add_article = 0;
+            $scope.browse_article = 0;
+            console.log("closeAddarticle - browse_article is:", $scope.browse_article)
+            console.log("closeAddarticle - add_article is:", $scope.add_article)
+
+        }
 
         $scope.isBrowseArticleSelected = function() {
             return $scope.browse_article === 1

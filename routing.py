@@ -7,12 +7,15 @@ from helper import *
 @app.route('/articles')
 @app.route('/articles/')
 def articlesLinkPage():
+    return render_template('index_2.html')
+
+@app.route('/articles/browse')
+def browseArticles():
     """ Main page:
         Find all articles
         List the 10 most popular tags
         generate a list of display content (Article_Display_Content objects)
     """
-
     print("Passed parameters are {0} and {1}".format(request.args.get('isthisworking'), request.args.get('testing')))
     article_types_list = session.query(Article_Type).all()
     # Get the 10 most popular tags
@@ -21,11 +24,10 @@ def articlesLinkPage():
     # # generate art_content, art name, art link, art artist name, tags created_by, last_updated_by
     kwargs = {"article_id":None, "article_type_id":None, "tag_id":None}
     article_display_content = getArticleDisplayContent(**kwargs)
-    return render_template('index.html',
+    return render_template('browse_articles.html',
                             most_popular_tags_list=most_popular_tags_list,
                             article_types_list = article_types_list,
                             article_display_content=article_display_content)
-
 
 
 @app.route('/articles/<int:type_id>/<int:article_id>/')
@@ -89,6 +91,7 @@ def addNewArticle():
         print("The article is: {0}".format(create_article.id))
         print("The article tags are: {0}".format(request.form['tags']))
         articleTagPairs(create_article, request.form['tags'])
+        print("Well we are done til here, dunno whats going on...")
         return redirect(url_for('articlesLinkPage'))
     else:
         return render_template('new_article.html')
@@ -232,3 +235,19 @@ def articleTagPairByIDAPIJSON(article_id):
 def articleCommentsByIDAPIJSON(article_id):
     comments = session.query(Comments).filter_by(article_id = article_id).all()
     return jsonify(CommentsForArticle= [comment.serialize for comment in comments])
+
+
+@app.route('/articles/filter')
+def filter():
+    by_user = request.args.get('user_id')
+    by_title = request.args.get('article_title')
+    by_domain = request.args.get('domain')
+    by_tag = request.args.get('tag_name')
+    by_type = request.args.get('article_type')
+
+    print("Here are the passed parameters: ")
+    print("user: {0}, title: {1}, domain: {2}, tag name: {3}, article type: {4} "
+            .format(by_user, by_title, by_domain, by_tag, by_type))
+
+
+    return redirect(url_for('articlesLinkPage'))
