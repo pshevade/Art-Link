@@ -209,7 +209,9 @@ def deleteArticle(article_id):
 
 @app.route('/articles/api/json')
 def articlesAPIJSON():
+    print("We detected a call to the articles api json")
     articles = session.query(Article).all()
+    print("we have {0} articles".format(len(articles)))
     return jsonify(ArticlesList = [article.serialize for article in articles])
 
 
