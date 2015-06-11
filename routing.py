@@ -211,8 +211,10 @@ def deleteArticle(article_id):
 def articlesAPIJSON():
     print("We detected a call to the articles api json")
     articles = session.query(Article).all()
-    print("we have {0} articles".format(len(articles)))
-    return jsonify(ArticlesList = [article.serialize for article in articles])
+    kwargs = {"article_id":None, "article_type_id":None, "tag_id":None}
+    article_display_content = getArticleDisplayContent(**kwargs)
+    print("The display content tags: {0}".format(article_display_content[0].tags))
+    return jsonify(article_display_content_json = [content.serialize for content in article_display_content])   
 
 
 @app.route('/articles/<int:article_id>/api/json')
@@ -229,7 +231,7 @@ def articleTagPairsAPIJSON():
 
 @app.route('/articles/<int:article_id>/tags/api/json')
 def articleTagPairByIDAPIJSON(article_id):
-    article_tag_pairs = session.query(Article_Tags).filter_by(id = article_id).all()
+    article_tag_pairs = session.query(Article_Tags).filter_by(article_id = article_id).all()
     return jsonify(ArticlesTagsList = [article_tag.serialize for article_tag in article_tag_pairs])
 
 

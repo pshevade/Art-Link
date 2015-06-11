@@ -87,6 +87,15 @@ class Tags(Base):
     id = Column(Integer, primary_key=True)
     tag_name = Column(String(100), nullable=True)
 
+    @property
+    def serialize(self):
+        return {
+            "tag_name"      : self.tag_name,
+        }
+
+
+
+
 
 """
     Class: Article_Tags

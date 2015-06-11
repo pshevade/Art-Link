@@ -3,30 +3,45 @@
 
     app.controller('FilterController', function($scope, FilterService) {
         $scope.show_search_text_box = 0;
-        $scope.articles = {};
-        $scope.filter_tag = {
-            'tag1': {
-                'name':'gand',
-
-            },
-            'tag2': {
-                'name':'my_tag2',
-            },
-        };
-        console.log($scope.filter_tag)
+        $scope.filter_new = '';
+        $scope.filter_tags = [];
+        console.log($scope.filter_tags)
         
-        $scope.getFilteredArticles = function(){
+        $scope.removeTag = function(tag){
+            console.log("We want to remove this tag: ", tag)
+            var index = $scope.filter_tags.indexOf(tag);
+            $scope.filter_tags.splice(index,1)
+        }
+
+        $scope.setupFilter = function(){
             console.log("Inside get Articles");
-            $scope.SearchTextBoxSelected = 0;
-            console.log("Before calling service")
-            FilterService.getFilteredArticles($scope.filter_tag).then(function(dataResponse){
-                console.log("Inside the get function, dataresponse is: ", dataResponse)
-                $scope.articles = dataResponse.data.ArticlesList;
-            });
-            console.log("Here are the articles we recieved: ", $scope.articles)
+            
+            console.log("The new filter is: ", $scope.filter_new)
+            console.log("The new filter is present in the current tags? ", $scope.filter_tags.indexOf($scope.filter_new))
+            // Push the new filter tag into our array if the user has typed it, and if it doesn't already exist.
+            if ($scope.filter_tags.indexOf($scope.filter_new) < 0){
+                $scope.filter_tags.push($scope.filter_new)
+            }
+            $scope.filter_new = '';
+            console.log("The filter tags are: ", $scope.filter_tags)
+            // console.log("Here are the articles before any call: ", $scope.articles)
+            if ($scope.show_search_text_box ===1){
+                $scope.SearchTextBoxSelected = 0;
+            }
+            // console.log("Before calling service")
+            $scope.getFilteredArticles();
+            // console.log("Here are the articles we recieved: ", $scope.articles)
         };
+
+        $scope.getFilteredArticles = function(){
+            FilterService.getFilteredArticles($scope.filter_tags).then(function(dataResponse){
+                // console.log("Inside the get function, dataresponse is: ", dataResponse)
+                $scope.articles = dataResponse.data.article_display_content_json;
+            });
+        }
 
         $scope.SearchTextBoxSelected = function() {
+            console.log("In search text box selected")
             if ($scope.show_search_text_box===0) {
                 $scope.show_search_text_box = 1;
             // }else {
@@ -36,11 +51,12 @@
         };
     
 
-
         $scope.isSearchTextBoxToggled = function() {
             console.log('Inside isSearchTextBoxToggled')
             return $scope.show_search_text_box === 1
         };
+
+        $scope.articles = $scope.getFilteredArticles();
 
     });
 
@@ -75,46 +91,6 @@
             });
         };
     });
-    // app.controller("OptionsController", function($scope){
-    //     console.log("OptionsController on");
-    //     $scope.add_article = 0;
-    //     $scope.browse_article = 1;
-        
 
-    //     $scope.selectBrowseArticle = function() {
-    //         $scope.browse_article = 1;
-    //         $scope.add_article = 0;
-    //         console.log("selectBrowsearticle - browse_article is:", $scope.browse_article)
-    //         console.log("selectAddarticle - add_article is:", $scope.add_article)
-    //     };
-
-    //     $scope.selectAddArticle = function() {
-    //         $scope.add_article = 1;
-    //         $scope.browse_article = 0;
-    //         console.log("selectAddarticle - browse_article is:", $scope.browse_article)
-    //         console.log("selectAddarticle - add_article is:", $scope.add_article)
-    //     };
-
-    //     $scope.closeAddArticle = function() {
-    //         $scope.add_article = 0;
-    //         $scope.browse_article = 0;
-    //         console.log("closeAddarticle - browse_article is:", $scope.browse_article)
-    //         console.log("closeAddarticle - add_article is:", $scope.add_article)
-
-    //     }
-
-    //     $scope.isBrowseArticleSelected = function() {
-    //         return $scope.browse_article === 1
-    //     };
-
-    //     $scope.isAddArticleSelected = function() {
-    //         return $scope.add_article === 1
-    //     };
-
-    //     $scope.addFilterTag = function() {
-    //         $scope.filter_tag.push()
-    //     }
-
-    // });
 
 })();
