@@ -25,10 +25,11 @@
             $scope.filter_new = '';
             console.log("The filter tags are: ", $scope.filter_tags)
             // console.log("Here are the articles before any call: ", $scope.articles)
-            if ($scope.show_search_text_box ===1){
-                $scope.SearchTextBoxSelected = 0;
-            }
+            // if ($scope.show_search_text_box ===1){
+            //     $scope.SearchTextBoxSelected = 0;
+            // }
             // console.log("Before calling service")
+            // $scope.SearchTextBoxUnselected();
             $scope.getFilteredArticles();
             // console.log("Here are the articles we recieved: ", $scope.articles)
         };
@@ -50,6 +51,12 @@
 
         };
     
+        $scope.SearchTextBoxUnselected = function() {
+            console.log("In search text box UNSelected")
+            if ($scope.show_search_text_box ===1) {
+                $scope.show_search_text_box = 0;
+            };
+        }
 
         $scope.isSearchTextBoxToggled = function() {
             console.log('Inside isSearchTextBoxToggled')

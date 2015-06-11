@@ -183,32 +183,6 @@ def getArticleDisplayContent(article_id=None, article_type_id=None, tag_id=None)
     return article_display_content
 
 
-# def getArticleDisplayContentJSON(article_id=None, article_type_id=None, tag_id=None):
-#     """ This function creates a list of the Article_Display_Content objects,
-#         to display to the front end.
-#         The list of the articles/type/tags is composed based on either a particular
-#         article, type, or tag (front end filtering) or for ALL articles
-#         return: list of Article_Display_Content objects
-#     """
-#     article_display_content = []
-#     # Retrieve articles based on the passed parameter
-#     if article_id:
-#         articles = session.query(Article).filter_by(id = article_id).one()
-#     elif article_type_id:
-#         articles = session.query(Article).filter_by(article_type_id = article_type_id).all()
-#     elif tag_id:
-#         articles = session.query(Article).filter(Article_Tags.tag_id == tag_id).filter(Article_Tags.article_id == Article.id).all()
-#     else:
-#         articles = session.query(Article).all()
-#     # For each article, find the article type object and the tags list
-#     for article in articles:
-#         article_type = session.query(Article_Type).filter_by(id=article.article_type_id).one()
-#         tags = session.query(Tags).filter(Article_Tags.article_id==article.id).filter(Article_Tags.tag_id==Tags.id).all()
-#         article_display_content.append(Article_Display_Content(article, article_type, tags))
-#     return jsonify(article_display_content_json = [content.serialize for content in article_display_content])
-   
-
-
 def deleteArticleTagPairs(article_id, tag_id):
     """ Delete article,tag pairs
         Search by either article_id or tag_id
